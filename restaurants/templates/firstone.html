@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HUNGRY?</title>
+</head>
+<body>
+	{% for item in cuisines %}
+	<ul>
+		<li>Cuisine: {{item.cuisine}}</li>
+		<li>Rate: {{item.rating}}</li>
+		<li>working days: {{item.working_days}}</li>
+		
+	</ul>
+		{% endfor %}
+
+
+
+	<h1>{{cuisine}}</h1>
+	<p>{{rating}}</p>
+
+</body>
+</html>
