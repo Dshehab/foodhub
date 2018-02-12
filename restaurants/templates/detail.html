@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Document</title>
+</head>
+<body>
+	<a href="{% url 'go_back' %}">Back</a>
+	<ul>
+		<li>Cuisine: {{restaurants.name}}</li>
+		<li>Rate: {{restaurants.description}}</li>
+		<li>working hours: {{restaurants.opening_time}} - {{restaurants.closing_time}}</li>
+	</ul>
+
+
+
+</body>
+</html>

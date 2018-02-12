@@ -5,19 +5,18 @@
 	<title>HUNGRY?</title>
 </head>
 <body>
-	{% for item in cuisines %}
+	{% for item in restaurants %}
+	<a href="{% url 'restaurant_detail' detail_id=item.id %}">
 	<ul>
-		<li>Cuisine: {{item.cuisine}}</li>
-		<li>Rate: {{item.rating}}</li>
-		<li>working days: {{item.working_days}}</li>
-		
+		<li>Cuisine: {{item.name}}</li>
+		<li>Rate: {{item.description}}</li>
+		<li>working hours: {{item.opening_time}} - {{item.closing_time}}</li>
 	</ul>
+
+
 		{% endfor %}
 
 
-
-	<h1>{{cuisine}}</h1>
-	<p>{{rating}}</p>
 
 </body>
 </html>
