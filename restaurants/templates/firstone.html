@@ -1,12 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>HUNGRY?</title>
-</head>
-<body>
-	{% for item in restaurants %}
+{% extends "base.html" %}
+
+{% block name_it %}
+HUNGRY?
+{% endblock name_it %}
+
+{% block info %}
+
+{% for item in restaurants %}
 	<a href="{% url 'restaurant_detail' detail_id=item.id %}">
+	<a href="{% url 'restaurant_delete' delete_id=item.id %}">Delete</a>
+	<a href="{% url 'restaurant_update' restaurant_id=item.id %}">Update</a>
+
+
+
 	<ul>
 		<li>Cuisine: {{item.name}}</li>
 		<li>Rate: {{item.description}}</li>
@@ -16,7 +22,4 @@
 
 		{% endfor %}
 
-
-
-</body>
-</html>
+{% endblock info %}

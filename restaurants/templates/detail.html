@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Document</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block name_it %}
+Detail
+{% endblock name_it %}
+
+{% block info %}
 	<a href="{% url 'go_back' %}">Back</a>
 	<ul>
 		<li>Cuisine: {{restaurants.name}}</li>
@@ -12,6 +13,4 @@
 	</ul>
 
 
-
-</body>
-</html>
+{% endblock info %}
