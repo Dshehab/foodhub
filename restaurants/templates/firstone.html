@@ -5,21 +5,40 @@ HUNGRY?
 {% endblock name_it %}
 
 {% block info %}
-
+<!-- <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-10">FoodHub</h1>
+    <p class="lead">You hungry? checkout our restaurants list!</p>
+  </div>
+</div>
+ -->
+<div class="row">
 {% for item in restaurants %}
-	<a href="{% url 'restaurant_detail' detail_id=item.id %}">
-	<a href="{% url 'restaurant_delete' delete_id=item.id %}">Delete</a>
-	<a href="{% url 'restaurant_update' restaurant_id=item.id %}">Update</a>
-
-
-
-	<ul>
-		<li>Cuisine: {{item.name}}</li>
-		<li>Rate: {{item.description}}</li>
-		<li>working hours: {{item.opening_time}} - {{item.closing_time}}</li>
-	</ul>
-
-
-		{% endfor %}
-
+	<div class="col-md-4">
+		<div class="card">
+		  <div class="card-body">
+		    <h5 class="card-title">{{item.name}}</h5>
+		    <p class="card-text">{{item.description}}</p>
+		  </div>
+		  <div class="list-group">  
+			  <a href="{% url 'restaurant_detail' detail_id=item.id %}" class="list-group-item list-group-item-action list-group-item-secondary">Detail</a>
+			  <a href="{% url 'restaurant_delete' delete_id=item.id %}" class="list-group-item list-group-item-action list-group-item-secondary">Delete</a>
+			  <a href="{% url 'restaurant_update' restaurant_id=item.id %}" class="list-group-item list-group-item-action list-group-item-secondary">Update</a>
+			  <span class="border border-secondary"></span>
+			  <span class="border border-secondary"></span>
+			  <span class="border border-secondary"></span>
+			 
+			</div>
+		</div>
+	</div>
+{% endfor %}
+</div>
+<div class="jumbotron">
+  <h1 class="display-4">you hungry yet?</h1>
+  <hr class="my-4">
+  <p>create a new restaurant!</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'create_restaurant' %}" role="button">create</a>
+  </p>
+</div>
 {% endblock info %}
