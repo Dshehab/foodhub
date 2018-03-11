@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from restaurants import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +26,13 @@ urlpatterns = [
     path('create/', views.create, name="create_restaurant"),
     path('restaurant_update/<int:restaurant_id>/', views.update, name="restaurant_update"),
     path('delete/<int:delete_id>/', views.delete, name="restaurant_delete"),
+    path('register/', views.user_register, name="register"),
+    path('login/', views.user_login, name="login"),
+    path('logout/', views.user_logout, name="logout"),
+    path('favorite_restaurant/<int:restaurant_id>/', views.favorite_restaurant, name="favorite_restaurant"),
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

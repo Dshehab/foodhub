@@ -14,8 +14,11 @@ HUNGRY?
  -->
 <div class="row">
 {% for item in restaurants %}
-	<div class="col-md-4">
+	<div class="col-md-4 card-list">
 		<div class="card">
+			{% if item.image %}
+				<img class="card-img-top" src="{{item.image.url}}" alt="Card image cap">
+			{% endif %}
 		  <div class="card-body">
 		    <h5 class="card-title">{{item.name}}</h5>
 		    <p class="card-text">{{item.description}}</p>
@@ -24,6 +27,10 @@ HUNGRY?
 			  <a href="{% url 'restaurant_detail' detail_id=item.id %}" class="list-group-item list-group-item-action list-group-item-secondary">Detail</a>
 			  <a href="{% url 'restaurant_delete' delete_id=item.id %}" class="list-group-item list-group-item-action list-group-item-secondary">Delete</a>
 			  <a href="{% url 'restaurant_update' restaurant_id=item.id %}" class="list-group-item list-group-item-action list-group-item-secondary">Update</a>
+			  <button class="btn btn-secondary custom-button" onclick="favoritebutton({{item.id}})">
+			  	<i id="fav-shape-{{item.id}}" class="fas fa-star"></i>
+			  	<span id="fav-text-{{item.id}}">{{item.favoriterestaurant_set.count}}</span>
+			  </button>
 			  <span class="border border-secondary"></span>
 			  <span class="border border-secondary"></span>
 			  <span class="border border-secondary"></span>
@@ -41,4 +48,28 @@ HUNGRY?
     <a class="btn btn-primary btn-lg" href="{% url 'create_restaurant' %}" role="button">create</a>
   </p>
 </div>
+<script type="text/javascript">
+	function favoritebutton(id){
+		$.ajax({
+			type:'GET',
+			url:'/favorite_restaurant/'+id+'/',
+			error: function(data){
+				console.log('Not Working!')
+			},
+			success: function(data){
+				console.log(data);
+				if(data.action=='fav'){
+					$('#fav-shape-'+id).addClass('text-warning');
+					$('#fav-text-'+id).text(data.fav_num);
+
+				}
+				else{
+					$('#fav-shape-'+id).removeClass('text-warning');
+					$('#fav-text-'+id).text(data.fav_num);
+				}
+
+			},
+		});
+	}
+</script>
 {% endblock info %}
