@@ -61,7 +61,7 @@ def user_register(request):
 	return render(request, 'register.html', context)
 def list(request):
 	if(request.user.is_anonymous):
-		return redirect('login')
+			return redirect('login')
 	object_list = Restaurant.objects.all()
 	object_list = object_list.order_by('publish_date', 'name')
 	query = request.GET.get('q')
