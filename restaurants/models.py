@@ -8,7 +8,7 @@ class Restaurant(models.Model):
 	image = models.ImageField(null=True)
 	opening_time = models.TimeField(null=True)
 	closing_time = models.TimeField(null=True)
-	publish_date = models.DateField()
+	publish_date = models.DateField(null=True)
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 	def __str__(self):
 		return self.name

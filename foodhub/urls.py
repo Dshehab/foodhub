@@ -18,6 +18,7 @@ from django.urls import path
 from restaurants import views
 from django.conf import settings
 from django.conf.urls.static import static
+from api.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,7 +30,15 @@ urlpatterns = [
     path('register/', views.user_register, name="register"),
     path('login/', views.user_login, name="login"),
     path('logout/', views.user_logout, name="logout"),
-    path('favorite_restaurant/<int:restaurant_id>/', views.favorite_restaurant, name="favorite_restaurant"),
+    path('favorite_restaurant/<int:restaurant_id/', views.favorite_restaurant, name="favorite_restaurant"),
+    path('api/list/', RestaurantListAPIView.as_view()),
+    path('api/detail/<int:detail_id>/', RestaurantDetailAPIView.as_view()),
+    path('api/delete/<int:restaurant_id>/', RestaurantDeleteAPIView.as_view()),
+    path('api/create/', RestaurantCreateAPIView.as_view()),
+    path('api/update/<int:restaurant_id>/', RestaurantUpdateAPIView.as_view()),
+
+
+
 
 ]
 
